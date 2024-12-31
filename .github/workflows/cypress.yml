@@ -29,3 +29,26 @@ jobs:
         with:
           start: npm run test 
           wait-on: http://localhost:3000
+          
+      - name: Upload Test Results
+        if: always() # Runs even if tests fail
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-results
+          path: |
+            cypress/screenshots   # Upload screenshots on failures
+            cypress/videos        # Upload videos recorded during tests
+            cypress/logs          # Upload logs if any
+
+      # Step 6: Upload Debug Logs for Analysis
+      - name: Upload Debug Logs
+        if: failure() # Only runs if tests fail
+        uses: actions/upload-artifact@v3
+        with:
+          name: debug-logs
+          path: /home/runner/.npm/_logs
+
+      # Step 7: Notify Test Results (Optional)
+      - name: Notify on Failure
+        if: failure() # Send notifications if tests fail
+        run: echo "Cypress tests failed. Check logs and screenshots for debugging."
