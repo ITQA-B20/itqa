@@ -27,9 +27,8 @@ jobs:
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
-          start: npm run test 
-          wait-on: http://localhost:3000
-          
+          runTests: true 
+
       - name: Upload Test Results
         if: always() # Runs even if tests fail
         uses: actions/upload-artifact@v3
