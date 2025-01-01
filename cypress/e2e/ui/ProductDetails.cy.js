@@ -7,6 +7,7 @@ describe("Product Details Page Testing", () => {
     cy.login(uiAuth.username, uiAuth.password);
   });
 
+  //205066A
   it("Verify Product Details Information", async () => {
     await ProductDetailsPage.get_inventory_item();
     await ProductDetailsPage.get_inventory_details_name();

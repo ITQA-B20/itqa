@@ -11,6 +11,7 @@ describe("Product Listing Page Testing", () => {
     ProductListingPage.check_AtoZ_order();
   });
 
+  //205066A
   it("Verify Product Sorting (Z to A)", () => {
     ProductListingPage.get_product_container_and_select_ZtoA();
     ProductListingPage.check_ZtoA_order();
