@@ -25,7 +25,6 @@ describe("Shopping Cart Testing", () => {
     cy.get('.shopping_cart_badge').should('contain', '1');
   });
 
-  //205066A
   it("Empty Cart Validation", () => {
     ShoppingCartPage.get_shopping_cart_link();
     ShoppingCartPage.get_cart_quantity();

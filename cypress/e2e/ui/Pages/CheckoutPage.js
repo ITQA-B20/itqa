@@ -3,7 +3,6 @@ class CheckoutPage {
     cy.get(".cart_cancel_link").click();
   }
 
-  //Liyoniha//
   fill_lastname_field() {
     cy.get('[data-test=lastName]').type('Doe');
   }
