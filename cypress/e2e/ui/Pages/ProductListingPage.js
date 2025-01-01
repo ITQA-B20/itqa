@@ -8,6 +8,20 @@ class ProductListingPage {
             expect(names).to.deep.equal([...names].sort());
         });
     }
+
+    //...liyonisha..................................................
+    get_sorting_price_high_to_low() {
+        cy.get('.product_sort_container').select('Price (high to low)');
+    }
+
+    check_high_to_low_sorting() {
+        cy.get('.inventory_item_price').then(($prices) => {
+            const prices = [...$prices].map(price => parseFloat(price.innerText.replace('$', '')));
+            expect(prices).to.deep.equal([...prices].sort((a, b) => b - a));
+          });
+    }
+    //.............................................................................................
+
 }
 
 export default new ProductListingPage();
