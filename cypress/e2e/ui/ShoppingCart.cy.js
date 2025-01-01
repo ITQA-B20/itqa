@@ -6,6 +6,9 @@ describe('Shopping Cart Testing', () => {
         cy.visit(uiBaseURL);
         cy.login(uiAuth.username, uiAuth.password);
     });
-
+    it('Add Multiple Products to Cart', () => {
+        ShoppingCartPage.click_first_three_inventory_buttons();
+        ShoppingCartPage.verify_cart_item_count();
+    });
 
 });
