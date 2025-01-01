@@ -1,5 +1,5 @@
 import { uiAuth, uiBaseURL } from "../../support/data";
-import CheckoutPage from './pages/CheckoutPage';
+import CheckoutPage from './Pages/CheckoutPage';
 
 describe('Checkout Process 2 Testing', () => {
     beforeEach(() => {
@@ -12,15 +12,18 @@ describe('Checkout Process 2 Testing', () => {
         cy.get('[data-test=lastName]').type('Doe');
         cy.get('[data-test=postalCode]').type('12345');
         cy.get('.btn_primary').click();
-      });
-    
+    });
 
-//Liyonisha_205061E
+    //Liyonisha_205061E
     it('Verify Item Summary in Checkout Overview', () => {
         CheckoutPage.verify_cart_items_are_visible();
         CheckoutPage.verify_total_price_displayed();
-        
-      });
 
+    });
+
+    it('Complete Order Placement', () => {
+        CheckoutPage.click_finish_button();
+        CheckoutPage.verify_order_completion_message();
+    });
 
 });

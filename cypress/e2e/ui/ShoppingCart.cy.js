@@ -1,5 +1,5 @@
 import { uiAuth, uiBaseURL } from "../../support/data";
-import ShoppingCartPage from "./pages/ShoppingCartPage";
+import ShoppingCartPage from "./Pages/ShoppingCartPage";
 
 describe("Shopping Cart Testing", () => {
   beforeEach(() => {
@@ -11,10 +11,14 @@ describe("Shopping Cart Testing", () => {
     // Add product to the cart
     ShoppingCartPage.add_To_Cart();
     ShoppingCartPage.validate_Cart_Badge(1);
-
     // Remove product from the cart
     ShoppingCartPage.remove_From_Cart();
     ShoppingCartPage.validate_Cart_Badge(0);
+  });
+
+  it('Add Multiple Products to Cart', () => {
+    ShoppingCartPage.click_first_three_inventory_buttons();
+    ShoppingCartPage.verify_cart_item_count();
   });
 
   //205066A

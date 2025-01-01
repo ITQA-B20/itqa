@@ -25,4 +25,11 @@ describe('Checkout Process 1 Testing', () => {
     CheckoutPage.get_cart_cancel_link();
     CheckoutPage.url();
   });
+  it('Verify Mandatory Fields in Checkout Info Page: Last Name', () => {
+    CheckoutPage.enter_first_name();
+    CheckoutPage.enter_postal_code();
+    CheckoutPage.click_continue_button();
+    CheckoutPage.verify_error_message_is_visible();
+  });
+
 });

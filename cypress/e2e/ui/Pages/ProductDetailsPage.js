@@ -8,7 +8,7 @@ class ProductDetailsPage {
         $item.find(".inventory_item_img").click();
       });
   }
-
+  
   get_inventory_details_name() {
     cy.get(".inventory_details_name").should("have.text", this.name);
   }
@@ -31,6 +31,16 @@ class ProductDetailsPage {
 
   verify_Cart_badge_is_not_Visible() {
     cy.get('.shopping_cart_badge').should('not.exist');
+  }
+
+  get_first_inventory_item_and_click() {
+    cy.get('.inventory_item_img').first().click();
+  }
+  go_back_to_inventory() {
+    cy.get('.inventory_details_back_button').click({ force: true });
+  }
+  verify_inventory_pageUrl() {
+    cy.url().should('include', '/inventory.html');
   }
 }
 
