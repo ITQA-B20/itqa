@@ -2,7 +2,7 @@ class CheckoutPage {
   get_cart_cancel_link() {
     cy.get(".cart_cancel_link").click();
   }
-  
+
   //Liyoniha//
   fill_lastname_field() {
     cy.get('[data-test=lastName]').type('Doe');
@@ -32,6 +32,18 @@ class CheckoutPage {
   //....................................................................//
   url() {
     cy.url().should("include", "cart.html");
+  }
+
+  submit_Checkout_Information(firstName, lastName, postalCode) {
+    cy.get('[data-test=firstName]').type(firstName);
+    cy.get('[data-test=lastName]').type(lastName);
+    cy.get('[data-test=postalCode]').type(postalCode);
+    cy.get('.btn_primary').click();
+    cy.url().should('include', 'checkout-step-two.html');
+  }
+
+  validate_Checkout_StepTwoUrl() {
+    cy.url().should('include', 'checkout-step-two.html');
   }
 }
 
