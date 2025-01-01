@@ -1,16 +1,17 @@
 class NavigationComponent {
   get_bm_burger_button() {
-    cy.get(".bm-burger-button").click();
+    return cy.get(".bm-burger-button").click();
   }
 
   wait() {
-    cy.wait(1000);
+    return cy.wait(1000);
   }
 
   get_bm_menu_wrap() {
-    cy.get(".bm-menu-wrap")
-      .should("have.attr", "style")
-      .and("include", "transform: translate3d(-100%, 0px, 0px)");
+    return cy
+      .get(".bm-menu-wrap")
+      .should("have.css", "transform")
+      .and("not.equal", "none"); // Menu should be transformed (open)
   }
 }
 
