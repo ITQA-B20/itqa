@@ -27,4 +27,10 @@ describe("Navigation Testing", () => {
 
     });
   })
+
+  it('Logout from Sidebar', () => {
+    NavigationComponent.get_menu_button();
+    NavigationComponent.click_logout_button();
+    NavigationComponent.verify_login_url();
+  });
 })

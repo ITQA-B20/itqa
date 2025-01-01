@@ -1,6 +1,5 @@
 import { uiAuth, uiBaseURL } from "../../support/data";
-import ShoppingCartPage from "./Pages/ShoppingCartPage";
-
+import ShoppingCartPage from './Pages/ShoppingCartPage';
 describe("Shopping Cart Testing", () => {
   beforeEach(() => {
     cy.visit(uiBaseURL);
@@ -25,5 +24,12 @@ describe("Shopping Cart Testing", () => {
   it("Empty Cart Validation", () => {
     ShoppingCartPage.get_shopping_cart_link();
     ShoppingCartPage.get_cart_quantity();
+  });
+
+  it('Navigate to Product from Cart', () => {
+    ShoppingCartPage.get_first_inventory_item_and_click();
+    ShoppingCartPage.click_shopping_cart_button();
+    ShoppingCartPage.click_item_name_in_shopping_cart();
+    ShoppingCartPage.verify_item_page_url();
   });
 });
