@@ -20,6 +20,11 @@ describe("Shopping Cart Testing", () => {
     ShoppingCartPage.verify_cart_item_count();
   });
 
+  it('Add Single Product to Cart', () => {
+    cy.get('.btn_inventory').first().click();
+    cy.get('.shopping_cart_badge').should('contain', '1');
+  });
+
   //205066A
   it("Empty Cart Validation", () => {
     ShoppingCartPage.get_shopping_cart_link();

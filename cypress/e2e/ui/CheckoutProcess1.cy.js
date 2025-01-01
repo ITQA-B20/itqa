@@ -23,6 +23,13 @@ describe('Checkout Process 1 Testing', () => {
     CheckoutPage.submit_Checkout_Information('Ravi', 'Ragav', '40000');
   });
 
+  it('Verify Mandatory Fields in Checkout Info Page: Postal Code', () => {
+    cy.get('[data-test=firstName]').type('John');
+    cy.get('[data-test=lastName]').type('Doe');
+    cy.get('.btn_primary').click();
+    cy.get('.error-button').should('be.visible');
+  });
+
   it('Verify Mandatory Fields in Checkout Info Page: First Name', () => {
     CheckoutPage.fill_lastname_field();
     CheckoutPage.fill_postalcode_field();
@@ -40,5 +47,4 @@ describe('Checkout Process 1 Testing', () => {
     CheckoutPage.click_continue_button();
     CheckoutPage.verify_error_message_is_visible();
   });
-
 });

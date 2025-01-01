@@ -3,6 +3,14 @@ class ShoppingCartPage {
     cy.get(".shopping_cart_link").click();
   }
 
+  get_first_addToCart_button_click() {
+    cy.get('.btn_inventory').first().click();
+  }
+
+  check_addToCart_badge_count() {
+    cy.get('.shopping_cart_badge').should('contain', '1');
+  }
+
   get_cart_quantity() {
     cy.get(".cart_quantity").should("not.exist");
   }

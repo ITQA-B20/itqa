@@ -1,6 +1,6 @@
 import { uiAuth, uiBaseURL } from "../../support/data";
-import ProductListingPage from "./Pages/ProductListingPage";
-describe("Product Listing Page Testing", () => {
+import ProductListingPage from './Pages/ProductListingPage';
+describe('Product Listing Page Testing', () => {
   beforeEach(() => {
     cy.visit(uiBaseURL);
     cy.login(uiAuth.username, uiAuth.password);
