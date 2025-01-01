@@ -8,6 +8,17 @@ class ProductListingPage {
             expect(names).to.deep.equal([...names].sort());
         });
     }
+
+    get_product_container_and_select_LowToHigh() {
+        cy.get('.product_sort_container').select('Price (low to high)');
+    }
+
+    check_LowHigh_order() {
+        cy.get('.inventory_item_price').then(($prices) => {
+            const prices = [...$prices].map(price => parseFloat(price.innerText.replace('$', '')));
+            expect(prices).to.deep.equal([...prices].sort((a, b) => a - b));
+        });
+    }
 }
 
 export default new ProductListingPage();
