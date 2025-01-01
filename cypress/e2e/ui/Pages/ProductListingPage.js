@@ -8,6 +8,24 @@ class ProductListingPage {
             expect(names).to.deep.equal([...names].sort());
         });
     }
+
+    getProductImages() {
+        return cy.get('.inventory_item_img');
+    }
+
+    clickFirstProductImage() {
+        this.getProductImages().first().click();
+    }
+
+    validateProductImageVisible() {
+        this.getProductImages().should('be.visible');
+    }
+
+    validateProductDetailPageUrl() {
+        cy.url().should('include', '/inventory-item.html');
+    }
+
+
 }
 
 export default new ProductListingPage();
