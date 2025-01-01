@@ -1,4 +1,5 @@
 import { uiAuth, uiBaseURL } from "../../support/data";
+import ProductDetailsPage from './pages/ProductDetailsPage';
 
 describe('Product Details Page Testing', () => {
     beforeEach(() => {
