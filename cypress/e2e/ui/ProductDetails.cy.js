@@ -7,9 +7,9 @@ describe("Product Details Page Testing", () => {
     cy.login(uiAuth.username, uiAuth.password);
   });
 
-  it("Verify Product Details Information", () => {
-    ProductDetailsPage.get_inventory_item();
-    ProductDetailsPage.get_inventory_details_name();
-    ProductDetailsPage.get_inventory_details_price();
+  it("Verify Product Details Information", async () => {
+    await ProductDetailsPage.get_inventory_item();
+    await ProductDetailsPage.get_inventory_details_name();
+    await ProductDetailsPage.get_inventory_details_price();
   });
 });

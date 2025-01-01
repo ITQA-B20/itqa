@@ -6,9 +6,9 @@ describe("Navigation Testing", () => {
     cy.login(uiAuth.username, uiAuth.password);
   });
 
-  it("Verify Sidebar Close Button", () => {
-    NavigationComponent.get_bm_burger_button();
-    NavigationComponent.wait();
-    NavigationComponent.get_bm_menu_wrap();
+  it("Verify Sidebar Close Button", async () => {
+    await NavigationComponent.get_bm_burger_button();
+    await NavigationComponent.wait();
+    await NavigationComponent.get_bm_menu_wrap();
   });
 });
