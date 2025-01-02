@@ -1,0 +1,15 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1735811730324' stop='1735811731616'>
+    <name>Get All Books</name>
+    <title>Get All Books</title>
+    <test-cases>
+        <test-case start='1735811730324' status='passed' stop='1735811731616'>
+            <name>Edge Case: When no books exist</name>
+            <title>Edge Case: When no books exist</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

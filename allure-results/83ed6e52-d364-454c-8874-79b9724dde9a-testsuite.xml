@@ -1,0 +1,36 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1735811740261' stop='1735811743498'>
+    <name>Update Book</name>
+    <title>Update Book</title>
+    <test-cases>
+        <test-case start='1735811741876' status='passed' stop='1735811742227'>
+            <name>Invalid Case: Update with a non-existent ID</name>
+            <title>Invalid Case: Update with a non-existent ID</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735811742264' status='passed' stop='1735811742767'>
+            <name>Forbidden Case: Update with insufficient permissions</name>
+            <title>Forbidden Case: Update with insufficient permissions</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735811742786' status='failed' stop='1735811743402'>
+            <name>Invalid Case: Update with an empty request body</name>
+            <title>Invalid Case: Update with an empty request body</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>expected 'Book id is not matched' to equal 'Empty Input Parameters.'</message>
+                <stack-trace>AssertionError: expected 'Book id is not matched' to equal 'Empty Input Parameters.'
+                    at Context.eval (webpack://itqa/./cypress/e2e/api/UpdateBook.cy.js:74:37)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

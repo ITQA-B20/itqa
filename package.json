@@ -3,12 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run"
+    "test": "cypress run",
+    "start:ui": "npx cypress run --browser=chrome --headed --spec cypress/e2e/ui/*.cy.js --reporter mocha-allure-reporter",
+    "start:api": "npx cypress run --browser=chrome --headed --spec cypress/e2e/api/*.cy.js --reporter mocha-allure-reporter",
+    "start:all": "npx cypress run --browser=chrome --headed --spec cypress/e2e/*.cy.js --reporter mocha-allure-reporter",
+    "open:report": "allure generate allure-results --clean -o allure-report && allure open  allure-report"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "cypress": "^13.17.0"
+    "allure-commandline": "^2.32.0",
+    "cypress": "^13.17.0",
+    "mocha-allure-reporter": "^1.4.0"
   }
 }
