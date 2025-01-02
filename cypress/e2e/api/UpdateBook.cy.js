@@ -1,4 +1,4 @@
-import {adminAuthHeader, baseURL, userAuthHeader} from "../../support/data";
+import { adminAuthHeader, baseURL, userAuthHeader } from "../../support/data";
 
 describe('Update Book', () => {
     let validBookId;
@@ -93,4 +93,21 @@ describe('Update Book', () => {
             expect(response.body).to.eq('Empty Input Parameters.');
         });
     });
+    // Authorization Case
+    it('Authorization Case: Update without authorization headers', () => {
+        cy.request({
+            method: 'PUT',
+            url: `${baseURL}/api/books/${1}`,
+            body: {
+                id: 1,
+                title: 'Unauthorized Update',
+                author: 'No Auth'
+            },
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(401);
+            expect(response.body).to.eq('You are not authorized to update the book.');
+        });
+    });
+
 });
