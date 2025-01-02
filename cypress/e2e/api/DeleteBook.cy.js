@@ -58,4 +58,16 @@ describe('Delete Books', () => {
             expect(response.body).to.eq('Invalid Input Parameters.');
         });
     });
+
+    // Authorization Case
+    it('Authorization Case: Delete a book without authorization headers', () => {
+        cy.request({
+            method: 'DELETE',
+            url: `${baseURL}/api/books/${validBookId}`,
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(401);
+            expect(response.body).to.eq('You are not authorized to delete the book.');
+        });
+    });
 });

@@ -42,6 +42,22 @@ describe('Create Books', () => {
         });
     });
 
+    // Authorization ID case
+    it('Authorization Case: Call the API without authorization headers', () => {
+        cy.request({
+            method: 'POST',
+            url: `${baseURL}/api/books`,
+            body: {
+                title: 'Unauthorized Book',
+                author: 'No Auth'
+            },
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(401);
+            expect(response.body).to.eq('You are not authorized to create the book.');
+        });
+    });
+
     // Duplicate ID Case
     it('Duplicate ID Case: Attempt to create a book with an existing ID', () => {
         cy.request({

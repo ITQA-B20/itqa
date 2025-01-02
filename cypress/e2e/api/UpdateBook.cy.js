@@ -44,6 +44,25 @@ describe('Update Book', () => {
         });
     });
 
+    // Invalid Case - Invalid ID Format
+    it('Invalid Case: Update with an invalid ID format', () => {
+        const invalidId = 'invalid';
+
+        cy.request({
+            method: 'PUT',
+            url: `${baseURL}/api/books/${invalidId}`,
+            headers: adminAuthHeader,
+            body: {
+                title: 'Updated Title',
+                author: 'Updated Author'
+            },
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(400);
+            expect(response.body).to.eq('Invalid Input Parameters.');
+        });
+    });
+
     it('Forbidden Case: Update with insufficient permissions', () => {
         cy.request({
             method: 'PUT',
