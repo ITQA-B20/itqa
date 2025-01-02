@@ -44,3 +44,5 @@ jobs:
         with:
           github_token: ${{ secrets.GHTOKEN }}
           publish_dir: ./allure-report
+          publish_branch: gh-pages  # Specify the branch to use for GitHub Pages
+          force_orphan: true        # Force-create a new commit without history
