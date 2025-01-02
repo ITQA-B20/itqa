@@ -28,7 +28,7 @@ jobs:
       - name: Run Cypress tests
         run: |
           npm install -g allure-commandline --save-dev # Install Allure
-          npx cypress run --browser=chrome --headed --spec "cypress/e2e/*.cy.js" --reporter mocha-allure-reporter
+          npx cypress run --browser=chrome --headed --spec "cypress/e2e/**/*.cy.js" --reporter mocha-allure-reporter
 
       # Step 5: Generate Allure report
       - name: Generate Allure Report
