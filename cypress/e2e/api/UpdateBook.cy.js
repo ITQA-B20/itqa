@@ -1,7 +1,7 @@
-import { adminAuthHeader, baseURL, userAuthHeader } from "../../support/data";
+import {adminAuthHeader, baseURL, userAuthHeader} from "../../support/data";
 
 describe('Update Book', () => {
-    let validBookId ;
+    let validBookId;
     let bookTitle;
     let bookAuthor;
 
@@ -24,8 +24,8 @@ describe('Update Book', () => {
         });
     });
 
-     // Invalid Case - Non-existent ID
-     it('Invalid Case: Update with a non-existent ID', () => {
+    // Invalid Case - Non-existent ID
+    it('Invalid Case: Update with a non-existent ID', () => {
         const nonExistentId = 9999;
 
         cy.request({
@@ -43,14 +43,14 @@ describe('Update Book', () => {
             expect(response.body).to.eq('Book not found');
         });
     });
-    
+
     it('Forbidden Case: Update with insufficient permissions', () => {
         cy.request({
             method: 'PUT',
             url: `${baseURL}/api/books/${validBookId}`,
             headers: userAuthHeader,
             body: {
-                id:validBookId,
+                id: validBookId,
                 title: 'Forbidden Update',
                 author: 'No Permissions'
             },
@@ -58,6 +58,20 @@ describe('Update Book', () => {
         }).then((response) => {
             expect(response.status).to.eq(403);
             expect(response.body).to.eq('User is not permitted.');
+        });
+    });
+
+    // Invalid Case - Empty Body
+    it('Invalid Case: Update with an empty request body', () => {
+        cy.request({
+            method: 'PUT',
+            url: `${baseURL}/api/books/${validBookId}`,
+            headers: adminAuthHeader,
+            body: {},
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(400);
+            expect(response.body).to.eq('Empty Input Parameters.');
         });
     });
 });

@@ -1,4 +1,4 @@
-import { adminAuthHeader, baseURL } from "../../support/data";
+import {adminAuthHeader, baseURL} from "../../support/data";
 
 describe('Create Books', () => {
     let bookTitle;
@@ -23,8 +23,8 @@ describe('Create Books', () => {
         });
     });
 
-     // Valid Case
-     it('Valid Case: Create a book with mandatory parameters', () => {
+    // Valid Case
+    it('Valid Case: Create a book with mandatory parameters', () => {
         const newTitle = `New Book ${Date.now()}`; // Unique title
         cy.request({
             method: 'POST',
@@ -56,6 +56,24 @@ describe('Create Books', () => {
         }).then((response) => {
             expect(response.status).to.eq(208); // Expect duplicate error
             expect(response.body).to.eq('Book Already Exists'); // Validate string response
+        });
+    });
+
+    // Invalid Case - Missing Fields
+    it('Invalid Case: Missing mandatory fields', () => {
+        const uniqueTitle = `Unique Title ${Date.now()}`; // Generate a unique title
+
+        cy.request({
+            method: 'POST',
+            url: `${baseURL}/api/books`,
+            headers: adminAuthHeader,
+            body: {
+                title: uniqueTitle // Provide a unique title but no author
+            },
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(400); // Expect 400 for missing fields
+            expect(response.body).to.eq('Invalid Input Parameters.'); // Adjust based on API error message
         });
     });
 });
