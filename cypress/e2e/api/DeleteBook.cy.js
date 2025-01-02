@@ -1,4 +1,4 @@
-import {adminAuthHeader, baseURL} from "../../support/data";
+import { adminAuthHeader, baseURL } from "../../support/data";
 
 describe('Delete Books', () => {
     let validBookId;
@@ -56,6 +56,18 @@ describe('Delete Books', () => {
         }).then((response) => {
             expect(response.status).to.eq(400);
             expect(response.body).to.eq('Invalid Input Parameters.');
+        });
+    });
+    // Forbidden Case - User without delete permissions
+    it('Forbidden Case: Delete a book with insufficient permissions', () => {
+        cy.request({
+            method: 'DELETE',
+            url: `${baseURL}/api/books/${validBookId}`,
+            headers: userAuthHeader, // Use user role with no delete permissions
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(403);
+            expect(response.body).to.eq('Request API call is forbidden.');
         });
     });
 });

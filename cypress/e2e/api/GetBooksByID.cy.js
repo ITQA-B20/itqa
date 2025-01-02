@@ -1,4 +1,4 @@
-import {adminAuthHeader, baseURL} from "../../support/data";
+import { adminAuthHeader, baseURL } from "../../support/data";
 
 describe('Get Books By ID', () => {
     let validId;
@@ -15,6 +15,19 @@ describe('Get Books By ID', () => {
             } else {
                 validId = null; // No data available
             }
+        });
+    });
+    // Invalid Case
+    it('Invalid Case: Pass a non-existent ID', () => {
+        const nonExistentId = 9999; // Replace with an invalid ID
+        cy.request({
+            method: 'GET',
+            url: `${baseURL}/api/books/${nonExistentId}`,
+            headers: adminAuthHeader,
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(404);
+            expect(response.body).to.eq('Book not found'); // Adjusted for string response
         });
     });
 
