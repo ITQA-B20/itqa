@@ -23,6 +23,25 @@ describe('Create Books', () => {
         });
     });
 
+     // Valid Case
+     it('Valid Case: Create a book with mandatory parameters', () => {
+        const newTitle = `New Book ${Date.now()}`; // Unique title
+        cy.request({
+            method: 'POST',
+            url: `${baseURL}/api/books`,
+            headers: adminAuthHeader,
+            body: {
+                title: newTitle,
+                author: 'Author Test'
+            }
+        }).then((response) => {
+            expect(response.status).to.eq(201);
+            expect(response.body).to.have.property('id');
+            expect(response.body).to.have.property('title', newTitle);
+            expect(response.body).to.have.property('author', 'Author Test');
+        });
+    });
+
     // Duplicate ID Case
     it('Duplicate ID Case: Attempt to create a book with an existing ID', () => {
         cy.request({
