@@ -1,4 +1,4 @@
-import { adminAuthHeader, baseURL } from "../../support/data";
+import {adminAuthHeader, baseURL} from "../../support/data";
 
 describe('Get Books By ID', () => {
     let validId;
@@ -17,7 +17,7 @@ describe('Get Books By ID', () => {
             }
         });
     });
-    
+
     it('Edge Case: Pass an invalid ID format', () => {
         const invalidId = 'invalid'; // String instead of an integer
         cy.request({
@@ -30,5 +30,4 @@ describe('Get Books By ID', () => {
             expect(response.body).to.eq('');   // Assert empty body
         });
     });
-
 });
