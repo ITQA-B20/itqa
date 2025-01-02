@@ -22,16 +22,16 @@ describe("Product Details Page Testing", () => {
     await ProductDetailsPage.get_inventory_details_price();
   });
 
-  it('Navigate Back to Product List', () => {
-    ProductDetailsPage.get_first_inventory_item_and_click();
+  it('Navigate Back to Product List', async () => {
+    await ProductDetailsPage.get_first_inventory_item_and_click();
     // allowing the click action to proceed even if the element is covered by another element or deemed not interactable.
-    ProductDetailsPage.go_back_to_inventory();
+    await ProductDetailsPage.go_back_to_inventory();
     ProductDetailsPage.verify_inventory_pageUrl();
   });
 
-  it('Add to Cart from Details Page', () => {
-    ProductDetailsPage.get_first_inventory_item_and_click();
-    ProductDetailsPage.get_AddToCart_button_And_click();
-    ProductDetailsPage.shopping_cart_badge_should_contain_1();
+  it('Add to Cart from Details Page', async() => {
+    await ProductDetailsPage.get_first_inventory_item_and_click();
+    await ProductDetailsPage.get_AddToCart_button_And_click();
+    await ProductDetailsPage.shopping_cart_badge_should_contain_1();
   });
 });

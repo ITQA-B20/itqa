@@ -23,6 +23,26 @@ describe('Update Book', () => {
             validBookId = response.body.id; // Store valid ID for testing
         });
     });
+
+     // Invalid Case - Non-existent ID
+     it('Invalid Case: Update with a non-existent ID', () => {
+        const nonExistentId = 9999;
+
+        cy.request({
+            method: 'PUT',
+            url: `${baseURL}/api/books/${nonExistentId}`,
+            headers: adminAuthHeader,
+            body: {
+                id: nonExistentId,
+                title: 'Updated Title',
+                author: 'Updated Author'
+            },
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(404);
+            expect(response.body).to.eq('Book not found');
+        });
+    });
     
     it('Forbidden Case: Update with insufficient permissions', () => {
         cy.request({
