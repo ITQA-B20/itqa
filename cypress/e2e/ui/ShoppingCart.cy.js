@@ -21,8 +21,8 @@ describe("Shopping Cart Testing", () => {
   });
 
   it('Add Single Product to Cart', () => {
-    cy.get('.btn_inventory').first().click();
-    cy.get('.shopping_cart_badge').should('contain', '1');
+    ShoppingCartPage.get_first_addToCart_button_click();
+    ShoppingCartPage.check_addToCart_badge_count();
   });
 
   it("Empty Cart Validation", () => {

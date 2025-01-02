@@ -7,6 +7,10 @@ class CheckoutPage {
     cy.get('[data-test=lastName]').type('Doe');
   }
 
+  fill_firstname_field() {
+    cy.get('[data-test=firstName]').type('John');
+  }
+
   fill_postalcode_field() {
     cy.get('[data-test=postalCode]').type('12345');
   }
@@ -44,39 +48,15 @@ class CheckoutPage {
     cy.url().should('include', 'checkout-step-two.html');
   }
 
-  enter_first_name() {
-    cy.get('[data-test=firstName]').type('John');
-  }
-  enter_postal_code() {
-    cy.get('[data-test=postalCode]').type('12345');
-  }
   click_continue_button() {
     cy.get('.btn_primary').click();
   }
-  verify_error_message_is_visible() {
-    cy.get('.error-button').should('be.visible');
-  }
+
   click_finish_button() {
     cy.get('.btn_action').click();
   }
   verify_order_completion_message() {
     cy.get('.complete-header').should('contain', 'THANK YOU FOR YOUR ORDER');
-  }
-
-  provide_firstname() {
-    cy.get('[data-test=firstName]').type('John');
-  }
-
-  provide_lastname() {
-    cy.get('[data-test=lastName]').type('Doe');
-  }
-
-  test_without_postal_code() {
-    cy.get('.btn_primary').click();
-  }
-
-  check_error_visible() {
-    cy.get('.error-button').should('be.visible');
   }
 
   add_price_of_each_product() {

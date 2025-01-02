@@ -32,8 +32,8 @@ describe('Checkout Process 2 Testing', () => {
   });
 
   it('Cancel Order Before Completion', () => {
-    cy.get('.cart_cancel_link').click();
-    cy.url().should('include', 'inventory.html'); // Verify return to product page
+    CheckoutPage.cancel_button_before_completion();
+    CheckoutPage.verify_to_product_page_after_clicking_cancel_button();
   });
 
   it('Complete Order Placement', () => {
