@@ -1,6 +1,6 @@
 import {adminAuthHeader, userAuthHeader, baseURL} from "../../support/data";
 
-describe('Get All Books', () => {
+describe('API_Get All Books', () => {
     const authHeaders = [
         {role: 'admin', header: adminAuthHeader},
         {role: 'user', header: userAuthHeader}

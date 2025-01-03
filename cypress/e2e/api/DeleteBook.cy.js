@@ -1,6 +1,6 @@
 import {adminAuthHeader, baseURL, invalidAuthHeader, userAuthHeader} from "../../support/data";
 
-describe('DELETE /api/books/{id} - Delete Book by ID', () => {
+describe('API_Delete Book by ID', () => {
     let validBookId;
 
     // Create a book before tests to ensure a valid ID exists
