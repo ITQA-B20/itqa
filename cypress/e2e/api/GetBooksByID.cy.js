@@ -1,63 +1,68 @@
-import { adminAuthHeader, baseURL } from "../../support/data";
+import {adminAuthHeader, baseURL, userAuthHeader} from "../../support/data";
 
 describe('API_Get Books By ID', () => {
     let validId;
 
+    const authHeaders = [
+        {role: 'admin', header: adminAuthHeader},
+        {role: 'user', header: userAuthHeader}
+    ];
+
     before(() => {
-        // Dynamically fetch a valid ID
         cy.request({
             method: 'GET',
             url: `${baseURL}/api/books`,
             headers: adminAuthHeader,
         }).then((response) => {
             if (response.body.length > 0) {
-                validId = response.body[0].id; // Use the first available ID
+                validId = response.body[0].id;
             } else {
-                validId = null; // No data available
+                validId = null;
             }
         });
     });
-    // Invalid Case
-    it('Invalid Case: Pass a non-existent ID', () => {
-        const nonExistentId = 9999; // Replace with an invalid ID
-        cy.request({
-            method: 'GET',
-            url: `${baseURL}/api/books/${nonExistentId}`,
-            headers: adminAuthHeader,
-            failOnStatusCode: false
-        }).then((response) => {
-            expect(response.status).to.eq(404);
-            expect(response.body).to.eq('Book not found'); // Adjusted for string response
-        });
-    });
 
-    it('Valid Case: Get book details for a valid ID', () => {
-        if (!validId) {
-            cy.log('No valid ID available for testing.');
-            return; // Skip test if no data exists
-        }
-        cy.request({
-            method: 'GET',
-            url: `${baseURL}/api/books/${validId}`,
-            headers: adminAuthHeader,
-        }).then((response) => {
-            expect(response.status).to.eq(200);
-            expect(response.body).to.have.property('id', validId);
-            expect(response.body).to.have.property('title');
-            expect(response.body).to.have.property('author');
+    authHeaders.forEach(({role, header}) => {
+        it(`Invalid Case: Pass a non-existent ID as ${role}`, () => {
+            const nonExistentId = 9999;
+            cy.request({
+                method: 'GET',
+                url: `${baseURL}/api/books/${nonExistentId}`,
+                headers: header,
+                failOnStatusCode: false
+            }).then((response) => {
+                expect(response.status).to.eq(404);
+                expect(response.body).to.eq('Book not found');
+            });
         });
-    });
 
-    it('Edge Case: Pass an invalid ID format', () => {
-        const invalidId = 'invalid'; // String instead of an integer
-        cy.request({
-            method: 'GET',
-            url: `${baseURL}/api/books/${invalidId}`,
-            headers: adminAuthHeader,
-            failOnStatusCode: false
-        }).then((response) => {
-            expect(response.status).to.eq(400); // Check status code
-            expect(response.body).to.eq('');   // Assert empty body
+        it(`Valid Case: Get book details for a valid ID as ${role}`, () => {
+            if (!validId) {
+                cy.log('No valid ID available for testing.');
+                return;
+            }
+            cy.request({
+                method: 'GET',
+                url: `${baseURL}/api/books/${validId}`,
+                headers: header,
+            }).then((response) => {
+                expect(response.status).to.eq(200);
+                expect(response.body).to.have.property('id', validId);
+                expect(response.body).to.have.property('title');
+                expect(response.body).to.have.property('author');
+            });
+        });
+
+        it(`Edge Case: Pass an invalid ID format as ${role}`, () => {
+            const invalidId = 'invalid';
+            cy.request({
+                method: 'GET',
+                url: `${baseURL}/api/books/${invalidId}`,
+                headers: header,
+                failOnStatusCode: false
+            }).then((response) => {
+                expect(response.status).to.eq(400);
+            });
         });
     });
 });
