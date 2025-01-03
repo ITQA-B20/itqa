@@ -82,4 +82,18 @@ describe('Delete Books', () => {
             expect(response.body).to.eq('Request API call is forbidden.');
         });
     });
+
+    // Invalid Case - Non-existent ID
+    it('Invalid Case: Delete a book with a non-existent ID', () => {
+        const nonExistentId = 9999;
+        cy.request({
+            method: 'DELETE',
+            url: `${baseURL}/api/books/${nonExistentId}`,
+            headers: adminAuthHeader,
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(404);
+            expect(response.body).to.eq('Book is not found.');
+        });
+    });
 });

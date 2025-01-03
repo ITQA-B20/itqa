@@ -1,4 +1,4 @@
-import {adminAuthHeader, baseURL} from "../../support/data";
+import { adminAuthHeader, baseURL } from "../../support/data";
 
 describe('Create Books', () => {
     let bookTitle;
@@ -39,6 +39,20 @@ describe('Create Books', () => {
             expect(response.body).to.have.property('id');
             expect(response.body).to.have.property('title', newTitle);
             expect(response.body).to.have.property('author', 'Author Test');
+        });
+    });
+
+    // Invalid Case - Empty Body
+    it('Invalid Case: Send an empty request body', () => {
+        cy.request({
+            method: 'POST',
+            url: `${baseURL}/api/books`,
+            headers: adminAuthHeader,
+            body: {},
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(400);
+            expect(response.body).to.eq('Mandatory parameters should not be null');
         });
     });
 
