@@ -3,7 +3,7 @@ name: Cypress Tests with Allure Report
 on:
   push:
     branches:
-      - main  # Replace 'main' with your desired branch name
+      - main # Replace 'main' with your desired branch name
 
 jobs:
   cypress-run:
@@ -29,7 +29,7 @@ jobs:
         run: |
           npm install -g allure-commandline --save-dev # Install Allure
           npx cypress run --browser=chrome --headed --spec "cypress/e2e/**/*.cy.js" --reporter mocha-allure-reporter
-        continue-on-error: true  # Allows workflow to proceed even if this step fails
+        continue-on-error: true # Allows workflow to proceed even if this step fails
 
       # Step 5: Generate Allure Report (Runs always, regardless of previous steps' success)
       - name: Generate Allure Report
@@ -44,6 +44,8 @@ jobs:
           git fetch origin gh-pages
           git checkout gh-pages || git checkout --orphan gh-pages
           git rm -rf .
+          git config --global user.email "ragurajsivanantham@gmail.com"
+          git config --global user.name "sragu2000"
           git commit -m "Cleanup old reports" || echo "No changes to commit"
           git push origin gh-pages
 
@@ -54,5 +56,5 @@ jobs:
         with:
           github_token: ${{ secrets.GHTOKEN }}
           publish_dir: ./allure-report
-          publish_branch: gh-pages  # Specify the branch to use for GitHub Pages
-          force_orphan: true        # Force-create a new commit without history
+          publish_branch: gh-pages # Specify the branch to use for GitHub Pages
+          force_orphan: true # Force-create a new commit without history
