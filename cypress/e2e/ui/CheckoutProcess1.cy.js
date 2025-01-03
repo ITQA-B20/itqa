@@ -1,6 +1,6 @@
 import { uiAuth, uiBaseURL } from "../../support/data";
 import CheckoutPage from './Pages/CheckoutPage';
-describe('Checkout Process 1 Testing', () => {
+describe('UI_Checkout Process 1 Testing', () => {
   beforeEach(() => {
     cy.visit(uiBaseURL);
     cy.login('standard_user', 'secret_sauce');

@@ -1,6 +1,6 @@
 import { adminAuthHeader, baseURL, userAuthHeader } from "../../support/data";
 
-describe('Update Book', () => {
+describe('API_Update Book', () => {
     let validBookId;
     let bookTitle;
     let bookAuthor;

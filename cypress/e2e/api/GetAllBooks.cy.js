@@ -1,6 +1,6 @@
 import { adminAuthHeader, baseURL } from "../../support/data";
 
-describe('Get All Books', () => {
+describe('API_Get All Books', () => {
     it('Valid Case: Get All Books', () => {
         cy.request({
             method: 'GET',

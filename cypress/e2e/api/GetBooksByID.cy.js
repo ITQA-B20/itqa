@@ -1,6 +1,6 @@
 import { adminAuthHeader, baseURL } from "../../support/data";
 
-describe('Get Books By ID', () => {
+describe('API_Get Books By ID', () => {
     let validId;
 
     before(() => {

@@ -1,6 +1,6 @@
 import { adminAuthHeader, baseURL } from "../../support/data";
 
-describe('Delete Books', () => {
+describe('API_Delete Books', () => {
     let validBookId;
 
     // Create a book before tests to ensure a valid ID exists
