@@ -1,5 +1,7 @@
 /node_modules
 /.pnp
+/allure-report
+/allure-results
 .pnp.js
 .DS_Store
 .env.local
