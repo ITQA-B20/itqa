@@ -37,26 +37,12 @@ jobs:
         run: |
           npx allure generate allure-results --clean -o allure-report
 
-      # Step 6: Clean up gh-pages branch before publishing
-      - name: Cleanup gh-pages branch
-        if: always()
-        run: |
-          git fetch origin gh-pages
-          git checkout gh-pages || git checkout --orphan gh-pages
-          git rm -rf .
-          git config --global user.email "ragurajsivanantham@gmail.com"
-          git config --global user.name "sragu2000"
-          git clean -fd
-          git add .
-          git commit -m "Cleanup old reports" || echo "No changes to commit"
-          git push origin gh-pages --force
-
-      # Step 7: Publish Allure report using GitHub Pages
+      # Step 6: Publish Allure report using GitHub Pages (Runs always, regardless of previous steps' success)
       - name: Deploy Allure Report to GitHub Pages
         if: always() # Ensures this step runs even if the Cypress tests fail
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GHTOKEN }}
           publish_dir: ./allure-report
-          publish_branch: gh-pages # Specify the branch to use for GitHub Pages
+          publish_branch: allure-reports # Specify the branch to use for GitHub Pages
           force_orphan: true # Force-create a new commit without history
