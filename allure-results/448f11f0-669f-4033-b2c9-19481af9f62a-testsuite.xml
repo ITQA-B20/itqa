@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1735879033948' stop='1735879050848'>
+    <name>UI_Checkout Process 2 Testing</name>
+    <title>UI_Checkout Process 2 Testing</title>
+    <test-cases>
+        <test-case start='1735879033948' status='passed' stop='1735879044160'>
+            <name>Verify Item Summary in Checkout Overview</name>
+            <title>Verify Item Summary in Checkout Overview</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879044199' status='passed' stop='1735879046317'>
+            <name>Validate Total Price</name>
+            <title>Validate Total Price</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879046334' status='passed' stop='1735879048490'>
+            <name>Cancel Order Before Completion</name>
+            <title>Cancel Order Before Completion</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879048508' status='passed' stop='1735879050848'>
+            <name>Complete Order Placement</name>
+            <title>Complete Order Placement</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

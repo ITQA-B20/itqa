@@ -1,0 +1,70 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1735879004831' stop='1735879008827'>
+    <name>API_Update Book</name>
+    <title>API_Update Book</title>
+    <test-cases>
+        <test-case start='1735879005380' status='passed' stop='1735879005579'>
+            <name>Valid Case: Update a book with valid parameters</name>
+            <title>Valid Case: Update a book with valid parameters</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879005603' status='passed' stop='1735879005956'>
+            <name>Invalid Case: Update with a non-existent ID</name>
+            <title>Invalid Case: Update with a non-existent ID</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879005974' status='failed' stop='1735879006707'>
+            <name>Invalid Case: Update with an invalid ID format</name>
+            <title>Invalid Case: Update with an invalid ID format</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>expected undefined to equal 'Invalid Input Parameters.'</message>
+                <stack-trace>AssertionError: expected undefined to equal 'Invalid Input Parameters.'
+                    at Context.eval (webpack://itqa/./cypress/e2e/api/UpdateBook.cy.js:83:37)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1735879006797' status='passed' stop='1735879007404'>
+            <name>Forbidden Case: Update with insufficient permissions</name>
+            <title>Forbidden Case: Update with insufficient permissions</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879007422' status='failed' stop='1735879008045'>
+            <name>Invalid Case: Update with an empty request body</name>
+            <title>Invalid Case: Update with an empty request body</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>expected 'Book id is not matched' to equal 'Empty Input Parameters.'</message>
+                <stack-trace>AssertionError: expected 'Book id is not matched' to equal 'Empty Input Parameters.'
+                    at Context.eval (webpack://itqa/./cypress/e2e/api/UpdateBook.cy.js:114:37)</stack-trace>
+            </failure>
+        </test-case>
+        <test-case start='1735879008083' status='failed' stop='1735879008801'>
+            <name>Authorization Case: Update without authorization headers</name>
+            <title>Authorization Case: Update without authorization headers</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+            <failure>
+                <message>expected undefined to equal 'You are not authorized to update the book.'</message>
+                <stack-trace>AssertionError: expected undefined to equal 'You are not authorized to update the book.'
+                    at Context.eval (webpack://itqa/./cypress/e2e/api/UpdateBook.cy.js:130:37)</stack-trace>
+            </failure>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

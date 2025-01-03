@@ -1,0 +1,55 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1735879012052' stop='1735879030644'>
+    <name>UI_Checkout Process 1 Testing</name>
+    <title>UI_Checkout Process 1 Testing</title>
+    <test-cases>
+        <test-case start='1735879012052' status='passed' stop='1735879021245'>
+            <name>Complete Order Placement</name>
+            <title>Complete Order Placement</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879021271' status='passed' stop='1735879023531'>
+            <name>Submit Valid Checkout Information</name>
+            <title>Submit Valid Checkout Information</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879023551' status='passed' stop='1735879025380'>
+            <name>Verify Mandatory Fields in Checkout Info Page: Postal Code</name>
+            <title>Verify Mandatory Fields in Checkout Info Page: Postal Code</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879025398' status='passed' stop='1735879027229'>
+            <name>Verify Mandatory Fields in Checkout Info Page: First Name</name>
+            <title>Verify Mandatory Fields in Checkout Info Page: First Name</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879027248' status='passed' stop='1735879028768'>
+            <name>Cancel Checkout and Return to Cart</name>
+            <title>Cancel Checkout and Return to Cart</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879028799' status='passed' stop='1735879030644'>
+            <name>Verify Mandatory Fields in Checkout Info Page: Last Name</name>
+            <title>Verify Mandatory Fields in Checkout Info Page: Last Name</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>

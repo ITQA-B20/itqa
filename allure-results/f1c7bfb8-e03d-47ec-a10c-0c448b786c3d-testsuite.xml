@@ -1,0 +1,47 @@
+<?xml version='1.0'?>
+<ns2:test-suite xmlns:ns2='urn:model.allure.qatools.yandex.ru' start='1735879086035' stop='1735879098212'>
+    <name>UI_Shopping Cart Testing</name>
+    <title>UI_Shopping Cart Testing</title>
+    <test-cases>
+        <test-case start='1735879086035' status='passed' stop='1735879093126'>
+            <name>Remove Product from Cart</name>
+            <title>Remove Product from Cart</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879093162' status='passed' stop='1735879094597'>
+            <name>Add Multiple Products to Cart</name>
+            <title>Add Multiple Products to Cart</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879094616' status='passed' stop='1735879095675'>
+            <name>Add Single Product to Cart</name>
+            <title>Add Single Product to Cart</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879095700' status='passed' stop='1735879096814'>
+            <name>Empty Cart Validation</name>
+            <title>Empty Cart Validation</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+        <test-case start='1735879096834' status='passed' stop='1735879098212'>
+            <name>Navigate to Product from Cart</name>
+            <title>Navigate to Product from Cart</title>
+            <labels/>
+            <parameters/>
+            <steps/>
+            <attachments/>
+        </test-case>
+    </test-cases>
+</ns2:test-suite>
