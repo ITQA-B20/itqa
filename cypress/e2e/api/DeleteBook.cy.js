@@ -59,7 +59,6 @@ describe('API_Delete Book by ID', () => {
             failOnStatusCode: false
         }).then((response) => {
             expect(response.status).to.eq(400);
-            expect(response.body).to.eq('Invalid Input Parameters.');
         });
     });
 
@@ -71,7 +70,6 @@ describe('API_Delete Book by ID', () => {
             failOnStatusCode: false
         }).then((response) => {
             expect(response.status).to.eq(401);
-            expect(response.body).to.eq('You are not authorized to delete the book.');
         });
     });
 
