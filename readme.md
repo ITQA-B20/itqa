@@ -1,7 +1,3 @@
-API Test Cases: https://docs.google.com/document/d/1NpLGc2eJULQrOlAihdjNLX3dHYIrrYygUr6wQwKHus8/edit?usp=sharing
-
-UI Test Cases: https://docs.google.com/spreadsheets/d/1WMQbPysdCL3n2KGjzNAh3GtEe1Qyg90o86lt98OB8ak/edit?usp=sharing
-
 # Repository Setup and Workflow
 
 This document provides instructions for setting up the repository, running tests, and contributing changes. Follow the steps carefully to ensure proper workflow and compliance with branch protection rules.
