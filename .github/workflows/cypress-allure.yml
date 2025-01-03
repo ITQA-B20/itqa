@@ -46,8 +46,10 @@ jobs:
           git rm -rf .
           git config --global user.email "ragurajsivanantham@gmail.com"
           git config --global user.name "sragu2000"
+          git clean -fd
+          git add .
           git commit -m "Cleanup old reports" || echo "No changes to commit"
-          git push origin gh-pages
+          git push origin gh-pages --force
 
       # Step 7: Publish Allure report using GitHub Pages
       - name: Deploy Allure Report to GitHub Pages
