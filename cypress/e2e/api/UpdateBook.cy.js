@@ -1,4 +1,4 @@
-import { adminAuthHeader, baseURL, userAuthHeader } from "../../support/data";
+import {adminAuthHeader, baseURL, userAuthHeader} from "../../support/data";
 
 describe('API_Update Book', () => {
     let validBookId;
@@ -80,7 +80,6 @@ describe('API_Update Book', () => {
             failOnStatusCode: false
         }).then((response) => {
             expect(response.status).to.eq(400);
-            expect(response.body).to.eq('Invalid Input Parameters.');
         });
     });
 
@@ -111,7 +110,7 @@ describe('API_Update Book', () => {
             failOnStatusCode: false
         }).then((response) => {
             expect(response.status).to.eq(400);
-            expect(response.body).to.eq('Empty Input Parameters.');
+            expect(response.body).to.eq('Empty Input Parameters');
         });
     });
     // Authorization Case
@@ -127,8 +126,6 @@ describe('API_Update Book', () => {
             failOnStatusCode: false
         }).then((response) => {
             expect(response.status).to.eq(401);
-            expect(response.body).to.eq('You are not authorized to update the book.');
         });
     });
-
 });

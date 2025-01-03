@@ -1,6 +1,6 @@
-import { adminAuthHeader, baseURL } from "../../support/data";
+import {adminAuthHeader, baseURL, invalidAuthHeader, userAuthHeader} from "../../support/data";
 
-describe('API_Delete Books', () => {
+describe('DELETE /api/books/{id} - Delete Book by ID', () => {
     let validBookId;
 
     // Create a book before tests to ensure a valid ID exists
@@ -24,24 +24,28 @@ describe('API_Delete Books', () => {
     });
 
     // Valid Case
-    it('Valid Case: Update a book with valid parameters', () => {
-        const updatedTitle = `Updated Title ${Date.now()}`;
-        const updatedAuthor = `Updated Author ${Date.now()}`;
-
+    it('Valid Case: Delete a book with a valid ID', () => {
         cy.request({
-            method: 'PUT',
+            method: 'DELETE',
             url: `${baseURL}/api/books/${validBookId}`,
-            headers: adminAuthHeader,
-            body: {
-                id: validBookId,
-                title: updatedTitle,
-                author: updatedAuthor
-            }
+            headers: adminAuthHeader
         }).then((response) => {
             expect(response.status).to.eq(200);
-            expect(response.body).to.have.property('id', validBookId);
-            expect(response.body).to.have.property('title', updatedTitle);
-            expect(response.body).to.have.property('author', updatedAuthor);
+            expect(response.body).to.eq('Successfully deleted the book.');
+        });
+    });
+
+    // Invalid Case - Non-existent ID
+    it('Invalid Case: Delete a book with a non-existent ID', () => {
+        const nonExistentId = 9999;
+        cy.request({
+            method: 'DELETE',
+            url: `${baseURL}/api/books/${nonExistentId}`,
+            headers: adminAuthHeader,
+            failOnStatusCode: false
+        }).then((response) => {
+            expect(response.status).to.eq(404);
+            expect(response.body).to.eq('Book is not found.');
         });
     });
 
@@ -70,6 +74,7 @@ describe('API_Delete Books', () => {
             expect(response.body).to.eq('You are not authorized to delete the book.');
         });
     });
+
     // Forbidden Case - User without delete permissions
     it('Forbidden Case: Delete a book with insufficient permissions', () => {
         cy.request({
@@ -80,20 +85,6 @@ describe('API_Delete Books', () => {
         }).then((response) => {
             expect(response.status).to.eq(403);
             expect(response.body).to.eq('Request API call is forbidden.');
-        });
-    });
-
-    // Invalid Case - Non-existent ID
-    it('Invalid Case: Delete a book with a non-existent ID', () => {
-        const nonExistentId = 9999;
-        cy.request({
-            method: 'DELETE',
-            url: `${baseURL}/api/books/${nonExistentId}`,
-            headers: adminAuthHeader,
-            failOnStatusCode: false
-        }).then((response) => {
-            expect(response.status).to.eq(404);
-            expect(response.body).to.eq('Book is not found.');
         });
     });
 });

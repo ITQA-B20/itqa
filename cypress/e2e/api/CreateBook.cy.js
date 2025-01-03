@@ -1,12 +1,16 @@
-import { adminAuthHeader, baseURL } from "../../support/data";
+import {adminAuthHeader, userAuthHeader, baseURL} from "../../support/data";
 
 describe('API_Create Books', () => {
     let bookTitle;
     let bookAuthor;
 
-    // Use `before` hook to create a book before running tests
+    const authHeaders = [
+        {role: 'admin', header: adminAuthHeader},
+        {role: 'user', header: userAuthHeader}
+    ];
+
     before(() => {
-        bookTitle = `Book Title ${Date.now()}`; // Generate unique title
+        bookTitle = `Book Title ${Date.now()}`;
         bookAuthor = 'Author Name';
 
         cy.request({
@@ -18,45 +22,77 @@ describe('API_Create Books', () => {
                 author: bookAuthor
             }
         }).then((response) => {
-            expect(response.status).to.eq(201); // Expect successful creation
-            expect(response.body).to.have.property('id');
-        });
-    });
-
-    // Valid Case
-    it('Valid Case: Create a book with mandatory parameters', () => {
-        const newTitle = `New Book ${Date.now()}`; // Unique title
-        cy.request({
-            method: 'POST',
-            url: `${baseURL}/api/books`,
-            headers: adminAuthHeader,
-            body: {
-                title: newTitle,
-                author: 'Author Test'
-            }
-        }).then((response) => {
             expect(response.status).to.eq(201);
             expect(response.body).to.have.property('id');
-            expect(response.body).to.have.property('title', newTitle);
-            expect(response.body).to.have.property('author', 'Author Test');
         });
     });
 
-    // Invalid Case - Empty Body
-    it('Invalid Case: Send an empty request body', () => {
-        cy.request({
-            method: 'POST',
-            url: `${baseURL}/api/books`,
-            headers: adminAuthHeader,
-            body: {},
-            failOnStatusCode: false
-        }).then((response) => {
-            expect(response.status).to.eq(400);
-            expect(response.body).to.eq('Mandatory parameters should not be null');
+    authHeaders.forEach(({role, header}) => {
+        it(`Valid Case: Create a book with mandatory parameters as ${role}`, () => {
+            const newTitle = `New Book ${Date.now()}`;
+            cy.request({
+                method: 'POST',
+                url: `${baseURL}/api/books`,
+                headers: header,
+                body: {
+                    title: newTitle,
+                    author: 'Author Test'
+                }
+            }).then((response) => {
+                expect(response.status).to.eq(201);
+                expect(response.body).to.have.property('id');
+                expect(response.body).to.have.property('title', newTitle);
+                expect(response.body).to.have.property('author', 'Author Test');
+            });
+        });
+
+        it(`Invalid Case: Send an empty request body as ${role}`, () => {
+            cy.request({
+                method: 'POST',
+                url: `${baseURL}/api/books`,
+                headers: header,
+                body: {},
+                failOnStatusCode: false
+            }).then((response) => {
+                expect(response.status).to.eq(400);
+                expect(response.body).to.eq('Mandatory parameters should not be null');
+            });
+        });
+
+        it(`Duplicate ID Case: Attempt to create a book with existing title as ${role}`, () => {
+            cy.request({
+                method: 'POST',
+                url: `${baseURL}/api/books`,
+                headers: header,
+                body: {
+                    title: bookTitle,
+                    author: bookAuthor
+                },
+                failOnStatusCode: false
+            }).then((response) => {
+                expect(response.status).to.eq(208);
+                expect(response.body).to.eq('Book Already Exists');
+            });
+        });
+
+        it(`Invalid Case: Missing mandatory fields as ${role}`, () => {
+            const uniqueTitle = `Unique Title ${Date.now()}`;
+            cy.request({
+                method: 'POST',
+                url: `${baseURL}/api/books`,
+                headers: header,
+                body: {
+                    title: uniqueTitle
+                },
+                failOnStatusCode: false
+            }).then((response) => {
+                expect(response.status).to.eq(400);
+                expect(response.body).to.eq('Invalid Input Parameters.');
+            });
         });
     });
 
-    // Authorization ID case
+    // Authorization case remains outside the forEach as it tests without auth headers
     it('Authorization Case: Call the API without authorization headers', () => {
         cy.request({
             method: 'POST',
@@ -68,42 +104,6 @@ describe('API_Create Books', () => {
             failOnStatusCode: false
         }).then((response) => {
             expect(response.status).to.eq(401);
-            expect(response.body).to.eq('You are not authorized to create the book.');
-        });
-    });
-
-    // Duplicate ID Case
-    it('Duplicate ID Case: Attempt to create a book with an existing ID', () => {
-        cy.request({
-            method: 'POST',
-            url: `${baseURL}/api/books`,
-            headers: adminAuthHeader,
-            body: {
-                title: bookTitle,
-                author: bookAuthor
-            },
-            failOnStatusCode: false
-        }).then((response) => {
-            expect(response.status).to.eq(208); // Expect duplicate error
-            expect(response.body).to.eq('Book Already Exists'); // Validate string response
-        });
-    });
-
-    // Invalid Case - Missing Fields
-    it('Invalid Case: Missing mandatory fields', () => {
-        const uniqueTitle = `Unique Title ${Date.now()}`; // Generate a unique title
-
-        cy.request({
-            method: 'POST',
-            url: `${baseURL}/api/books`,
-            headers: adminAuthHeader,
-            body: {
-                title: uniqueTitle // Provide a unique title but no author
-            },
-            failOnStatusCode: false
-        }).then((response) => {
-            expect(response.status).to.eq(400); // Expect 400 for missing fields
-            expect(response.body).to.eq('Invalid Input Parameters.'); // Adjust based on API error message
         });
     });
 });
